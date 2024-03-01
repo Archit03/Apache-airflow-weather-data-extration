@@ -68,7 +68,7 @@ with DAG("weather_dag", default_args=default_args, schedule_interval="@daily", c
     weather_api_ready = HttpSensor(
         task_id="weather_api_ready",
         http_conn_id="weather_api",
-        endpoint="/data/2.5/weather?lat=19.0760&lon=72.8777&appid=46c43dca514d1dfa379d9ee32f4baead",
+        endpoint="/data/2.5/weather?lat=19.0760&lon=72.8777&appid=xxxxxxxxxxxxxxxxxxxxxxxxx",
         timeout=20,
         mode="poke"
     )
@@ -76,7 +76,7 @@ with DAG("weather_dag", default_args=default_args, schedule_interval="@daily", c
     extract_weather_data = SimpleHttpOperator(
         task_id='extract_weather_data',
         http_conn_id='weather_api',
-        endpoint="/data/2.5/weather?lat=19.0760&lon=72.8777&appid=46c43dca514d1dfa379d9ee32f4baead",
+        endpoint="/data/2.5/weather?lat=19.0760&lon=72.8777&appid=xxxxxxxxxxxxxxxxxxxxxxxxxx",
         method='GET',
         response_filter=lambda response: json.loads(response.text),
         log_response=True
